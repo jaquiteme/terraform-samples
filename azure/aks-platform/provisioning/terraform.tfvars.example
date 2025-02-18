@@ -1,0 +1,35 @@
+resource_group_name = "RESOURCE_GROUP_NAME"
+prefix              = "dev"
+aks_cluster_definition = {
+    sku_tier               = "Free"
+    loadbalancer_sku       = "standard"
+    assign_acr             = false
+    kubernetes_version     = "1.30"
+    aks_sku_tier           = "Standard"
+    rbac_auth_nabled       = true
+    enable_host_encryption = false
+
+    masters = {
+      count   = 1
+      vm_size = "Standard_D2s_v3"
+    }
+
+    workers = {
+      count   = 2
+      vm_size = "Standard_D2s_v3"
+    }
+
+    cni_plugin            = "azure"
+    network_policy_engine = "azure"
+
+    addons = {
+      "argocd" = {
+        external_url    = "dev-argocd.example.com",
+        selfsigned_cert = true
+      }
+    }
+
+    create_cluster_log_analytics_workspace = true
+}
+
+attach_keyvault_to_aks = false

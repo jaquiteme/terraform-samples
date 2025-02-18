@@ -4,6 +4,4 @@ provider "azurerm" {
   storage_use_azuread = true # As Share Access Key will be disabled
 }
 
-provider "random" {
-  
-}
+provider "random" {}
